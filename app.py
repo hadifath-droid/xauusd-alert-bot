@@ -42,4 +42,17 @@ def webhook():
     return "OK", 200
 
 if __name__ == "__main__":
+    @app.route("/tv-test")
+def tv_test():
+
+    url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
+
+    payload = {
+        "chat_id": CHAT_ID,
+        "text": "📈 TradingView Test Alert\n\nXAUUSD\nTF: M2\nHarga: 4380"
+    }
+
+    requests.post(url, json=payload)
+
+    return "TradingView Test Sent"
     app.run(host="0.0.0.0", port=8080)
