@@ -7,9 +7,11 @@ app = Flask(__name__)
 BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 
+
 @app.route("/")
 def home():
     return "XAUUSD Alert Bot Running"
+
 
 @app.route("/send-test")
 def send_test():
@@ -25,6 +27,7 @@ def send_test():
 
     return "Message Sent"
 
+
 @app.route("/tv-test")
 def tv_test():
 
@@ -39,10 +42,11 @@ def tv_test():
 
     return "TradingView Test Sent"
 
+
 @app.route("/webhook", methods=["POST"])
 def webhook():
 
-    data = request.json
+    data = request.get_json(silent=True)
 
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
 
@@ -54,6 +58,18 @@ def webhook():
     requests.post(url, json=payload)
 
     return "OK", 200
+
+
+@app.route("/routes")
+def routes():
+
+    route_list = []
+
+    for rule in app.url_map.iter_rules():
+        route_list.append(str(rule))
+
+    return "<br>".join(route_list)
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
