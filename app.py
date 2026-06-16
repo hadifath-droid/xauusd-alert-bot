@@ -35,7 +35,7 @@ def tv_test():
 
     payload = {
         "chat_id": CHAT_ID,
-        "text": "📈 TradingView Test Alert\n\nXAUUSD\nTF: M2\nHarga: 4380"
+        "text": "📈 TradingView Test Alert\n\nXAUUSD\nTF: M2X78\nHarga: 4380 Jutaaa"
     }
 
     requests.post(url, json=payload)
