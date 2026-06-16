@@ -42,15 +42,16 @@ def tv_test():
 
     return "TradingView Test Sent"
 
-
 @app.route("/webhook", methods=["POST"])
 def webhook():
+
+    data = request.get_data(as_text=True)
 
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
 
     payload = {
         "chat_id": CHAT_ID,
-        "text": "WEBHOOK BARU SUDAH AKTIF"
+        "text": data
     }
 
     requests.post(url, json=payload)
