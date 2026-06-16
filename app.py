@@ -10,7 +10,7 @@ CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 
 @app.route("/")
 def home():
-    return "XAUUSD Alert Bot Running"
+    return "Hello This Hadi Fath Smart Trading"
 
 
 @app.route("/send-test")
